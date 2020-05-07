@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/materialize.css">
+        <script>
+            function mediaFinal(){
+                var nome = form_mediaFinal.nome.value;
+
+                var diciplina = form_mediaFinal.diciplina.value;
+                var nota1 = form_mediaFinal.nota1.value;
+                var nota2 = form_mediaFinal.nota2.value;
+
+                var soma = (parseFloat(nota1) + parseFloat(nota2)) / 2;
+
+                    if (soma <= 3) {
+                    var situacao = "Reprovado";
+                    }else if (soma < 7) {
+                    var situacao = "Recuperação";
+                    }else if (soma >= 7) {
+                    var situacao = "Aprovado";
+                                    }
+
+                    $('#msgFinal').append(nome.toUpperCase() + ", Você está: "
+                    + situacao + " na disciplina " + diciplina.toUpperCase() + 
+                    " com média " + soma);
+
+}
+        </script>
+        <body>
+            <div class="row">
+                <form name="form_mediaFinal" id="form_mediaFinal">
+                      <div class="row">
+                          <div class="input-field col s12">
+                            <input placeholder="Nome Completo" name="nome" id="nome" type="text" class="validate">
+                            <label for="first_name">Nome</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input placeholder="Diciplina" name="diciplina" id="diciplina" type="text" class="validate">
+                            <label for="first_name">Diciplina</label>
+                          </div>
+                          <div class="input-field col s3">
+                            <input placeholder="Nota 1" name="nota1" id="nota1" type="number" class="validate">
+                            <label for="first_name">Nota 1</label>
+                          </div>
+                          <div class="input-field col s3">
+                            <input placeholder="Nota 2" name="nota2" id="nota2" type="number" class="validate">
+                            <label for="first_name">Nota 2</label>
+                          </div>
+                      </div>
+          
+                      <button onclick="mediaFinal()" class="btn waves-effect waves-light" type="button" name="action">
+                          Calcular
+                      </button>
+              </form>
+            </div>
+              <p id="msgFinal"></p>
+     
+        </body>
+    </head>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+  <script src="js/materialize.js">
+  </script>
+
+  <script>
+      $(document).ready(function() {
+    M.updateTextFields();
+  });
+  </script>
+</html>

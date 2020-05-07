@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <body>
+            <link rel="stylesheet" href="css/materialize.css">
+            <script>
+                function carne(){
+	            var nome = form_carne.nome.value;
+	            var produto = form_carne.produto.value;
+	            var preco = form_carne.preco.value;
+            	var qtd = form_carne.qtd.value;
+	            var parcela = form_carne.parcela.value;
+
+	            preco = parseFloat(preco)	 * parseFloat(qtd);
+
+	            if (parcela >= 3 && parcela<6) {
+		        var valorTotal = parseFloat(preco) + (parseFloat(preco) * 0.05);
+	            }else if (parcela == 6) {
+		        var valorTotal = parseFloat(preco) + (parseFloat(preco) * 0.12);
+	             }else{
+		        var valorTotal = preco;
+          }
+	            var valorParcela = parseFloat(valorTotal) / parseInt(parcela);
+
+	    $('#msgCarne').append(
+		"--------------------------------------------------------------------------------------------"+
+		"<br><b>LOJA DE ELETRODOMÉSTICOS</b><br>" + 
+		"<b>CLIENTE: </b>" + nome.toUpperCase() + 
+		"<br><b>PRODUTO: </b>" + produto.toUpperCase() + 
+		"<br><b>VALOR:  </b>" + valorParcela + 
+		"Parcela 1/" + parcela + "<br>"+ 
+		"--------------------------------------------------------------------------------------------"
+		);
+}
+            </script>
+            <div class="row">
+              <form name="form_carne" id="form_carne">
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Nome Completo" name="nome" id="nome" type="text" class="validate">
+                      <label for="nome">Nome</label>
+                  </div>
+                  <div class="input-field col s5">
+                      <input placeholder="Produto" name="produto" id="produto" type="text" class="validate">
+                      <label for="produto">Produto</label>
+                  </div>
+                  <div class="input-field col s2">
+                      <input placeholder="R$" name="preco" id="preco" type="number" class="validate">
+                      <label for="first_name">Preço</label>
+                  </div>
+                  <div class="input-field col s2">
+                      <input placeholder="Quantidade" name="qtd" id="qtd" type="number" class="validate">
+                      <label for="qtd">Quantidade</label>
+                  </div>
+                  <div class="input-field col s2">
+                      <select class="custom-select" id="parcela" name="parcela" required>
+                          <option selected disabled value="">Parcelas</option>
+                          <option value="1">1 parcela</option>
+                          <option value="2">2 parcelas</option>
+                          <option value="3">3 parcelas</option>
+                          <option value="4">4 parcelas</option>
+                          <option value="5">5 parcelas</option>
+                          <option value="6">6 parcelas  </option>
+                      </select>
+                      <label for="parcela">Quantidade de parcelas</label>
+                  </div>
+                </div>
+  
+                <button onclick="carne()" class="btn waves-effect waves-light" type="button" name="action"> Calcular
+              </button>
+            </form>
+                    <p id="msgCarne"></p>
+        </body>
+    </head>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+  <script src="js/materialize.js">
+  </script>
+
+  <script>
+      $(document).ready(function() {
+    M.updateTextFields();
+  });
+  </script>
+  <script>
+    
+  $(document).ready(function(){
+    $('select').formSelect();
+  }); 
+  </script>
+</html>
