@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/materialize.css">
+
+        <script>
+            function imc(){
+	var nome = form_imc.nome.value;
+	var peso = form_imc.peso.value;
+	var altura = form_imc.altura.value;
+
+	var imc = parseFloat(peso) / (parseFloat(altura) * parseFloat(altura));
+
+	$('#resultImc').append(
+		"--------------------------------------------------------------------------------------------" + 
+		"<br><b>RESULTADO - IMC</b><br>" + 
+		"<b>PACIENTE: </b>" + nome.toUpperCase() + 
+		"<br><b>PESO: </b>" + peso + "KG" + 
+		"<br><b>ALTURA: </b>" + altura + 
+		"<br><b>IMC: </b>" + imc + "<br>"
+		);
+
+	if (imc < 18.5) {
+		var nivel = "baixo peso";
+		var msg = "Peso baixo para a altura. Maior probabilidade de anorexia.";
+	}else if (imc < 24.9) {
+		var nivel = "peso normal";
+		var msg = "Maior probabilidade de ser um indivíduo saudável.";
+	}else if (imc < 29.9) {
+		var nivel = "pré-obesidade";
+		var msg = "Alguma probabilidade de problemas de saúde. Predisposição a tornar-se obeso.";
+	}else if (imc < 34.9) {
+		var nivel = "obesidade grau I";
+		var msg = "Risco moderado de diabetes tipo II, hipertensão, colestrerol, cardiopatia.";
+	}else if (imc < 39.9) {
+		var nivel = "obesidade grau II";
+		var msg = "Risco grave. Aumenta o risco das doenças associadas. O risco de mortalidade aumenta 50%.";
+	}else if (imc > 40) {
+		var nivel = "obesidade grau III ou obesidade móbida";
+		var msg = "Risco muito grave. O risco das doenças associadas assim como mortalidade aumenta 90%.";
+	}
+
+	$('#msgImc').append(
+			"Olá " + nome.toUpperCase() + ", você está no nível de obesidade: <b>"
+			+ nivel + "</b>. <br>" +
+			"Com este nível de IMC você está propenso a apresentar os seguintes problemas de saúde:"
+			+ msg + "<br>" + 
+			"--------------------------------------------------------------------------------------------"
+			);
+}
+        </script>
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+  <script src="js/materialize.js">
+  </script>
+
+<div class="row">
+    <form name="form_imc" id="form_imc">
+          <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Paciente" name="nome" id="nome" type="text" class="validate">
+                <label for="first_name">Paciente</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Peso kg" name="peso" id="peso" type="number" step="0.01" class="validate">
+                <label for="first_name">Peso</label>
+              </div>
+              <div class="input-field col s3">
+                <input placeholder="Altura m" name="altura" id="altura" type="number" step="0.01" class="validate">
+                <label for="first_name">Altura</label>
+              </div>
+          </div>
+
+          <button onclick="imc()" class="btn waves-effect waves-light" type="button" name="action">
+              Calcular IMC
+          </button>
+  </form>
+  <p id="resultImc"></p>
+  <p id="msgImc"></p>
+</div>
+    </body>
+</html>
